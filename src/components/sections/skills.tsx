@@ -11,7 +11,7 @@ export function Skills() {
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
         <SectionHeading
           id="skills-heading"
-          eyebrow="Skills"
+          eyebrow="Systems"
           title="Technologies I use on shipped work"
           description="Grouped by how I actually use them — not a list of every tool I have opened."
         />

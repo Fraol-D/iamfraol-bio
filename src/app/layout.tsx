@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, Geist_Mono, Source_Sans_3 } from "next/font/google";
 
 import { site } from "@data/site";
+import { SoundProvider } from "@/components/sound-provider";
 import "./globals.css";
 
 const sourceSans = Source_Sans_3({
@@ -20,10 +21,8 @@ const bricolage = Bricolage_Grotesque({
 });
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#eef2f6" },
-    { media: "(prefers-color-scheme: dark)", color: "#10141a" },
-  ],
+  themeColor: "#07090c",
+  colorScheme: "dark",
 };
 
 export const metadata: Metadata = {
@@ -66,10 +65,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${sourceSans.variable} ${geistMono.variable} ${bricolage.variable} h-full scroll-smooth antialiased`}
+      className={`dark ${sourceSans.variable} ${geistMono.variable} ${bricolage.variable} h-full scroll-smooth antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background font-sans text-foreground">
-        {children}
+        <SoundProvider>{children}</SoundProvider>
       </body>
     </html>
   );

@@ -1,5 +1,5 @@
-import { ProjectCard } from "@/components/project-card";
-import { ProjectShowcase } from "@/components/project-showcase";
+import { Mission } from "@/components/mission";
+import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
 import { getFeaturedProjects, getOtherProjects } from "@/lib/projects";
 
@@ -17,15 +17,15 @@ export function Work() {
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
         <SectionHeading
           id="work-heading"
-          eyebrow="Work"
+          eyebrow="Active missions"
           title="Selected projects"
-          description="Click a screenshot or URL bar to open the live product. Featured items are the ones I would walk through in an interview."
+          description="Veris is first. Inspect a project for the brief, or open Live / GitHub to go to the product."
         />
 
         {primary ? (
-          <div className="mt-12">
-            <ProjectShowcase project={primary} />
-          </div>
+          <Reveal className="mt-12">
+            <Mission project={primary} variant="hero" imagePriority />
+          </Reveal>
         ) : (
           <p className="mt-12 text-muted-foreground">
             Add a project with <code>featured: true</code> in{" "}
@@ -34,13 +34,15 @@ export function Work() {
         )}
 
         {restFeatured.length > 0 ? (
-          <div className="mt-6 grid gap-6 lg:grid-cols-2">
+          <div className="mt-14 grid gap-10 lg:grid-cols-2">
             {restFeatured.map((project, index) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                priority={index === 0}
-              />
+              <Reveal key={project.id}>
+                <Mission
+                  project={project}
+                  variant="featured"
+                  imagePriority={index === 0}
+                />
+              </Reveal>
             ))}
           </div>
         ) : null}
@@ -49,17 +51,15 @@ export function Work() {
           <div className="mt-20">
             <SectionHeading
               level="h3"
-              eyebrow="More"
+              eyebrow="Additional"
               title="Other work"
-              description="Additional projects kept here so featured work stays the first thing a recruiter sees."
+              description="Still worth seeing, kept visually secondary so Veris stays first."
             />
-            <div className="mt-8 grid gap-4">
+            <div className="mt-8 grid gap-8">
               {other.map((project) => (
-                <ProjectCard
-                  key={project.id}
-                  project={project}
-                  variant="secondary"
-                />
+                <Reveal key={project.id}>
+                  <Mission project={project} variant="secondary" />
+                </Reveal>
               ))}
             </div>
           </div>

@@ -13,7 +13,7 @@ export function Experience() {
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
         <SectionHeading
           id="experience-heading"
-          eyebrow="Background"
+          eyebrow="Record"
           title="Experience and education"
         />
 

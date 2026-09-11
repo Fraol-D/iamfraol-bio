@@ -33,7 +33,7 @@ const links = [
     href: site.resumePath,
     value: "Download PDF",
     icon: FileText,
-    external: false,
+    external: true,
   },
   {
     label: "Phone",
@@ -50,7 +50,7 @@ export function Contact() {
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-24">
         <SectionHeading
           id="contact-heading"
-          eyebrow="Contact"
+          eyebrow="Establish connection"
           title="If this work is relevant, I would like to hear from you."
           description="Email is the fastest path. GitHub, LinkedIn, and a resume are here if you want more context first."
         />

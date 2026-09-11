@@ -5,15 +5,16 @@
  * ----------------
  * 1. Add a screenshot to `public/projects/` (PNG, JPG, WEBP, or SVG).
  * 2. Copy the template object below into the `projects` array.
- * 3. Fill in the fields. Set `featured: true` for strongest/recent work.
- * 4. Deploy. No component or page edits are required.
+ * 3. Fill in the fields. Set `featured: true` for interview-priority work.
+ * 4. Set `rank` (lower = higher on the page).
+ * 5. Deploy. No component or page edits are required.
  *
  * Ordering
  * --------
- * Featured projects (`featured: true`) appear first, in a larger layout.
- * Non-featured projects appear in "Other work".
- * Within each group, newer `date` values appear first.
- * You do not need to reorder this array by hand.
+ * Featured projects (`featured: true`) appear under Active missions.
+ * The lowest `rank` featured project gets the large primary layout.
+ * Non-featured projects appear in Other work.
+ * If two projects share a rank, newer `date` values win.
  *
  * Links
  * -----
@@ -30,19 +31,25 @@ export type Project = {
   shortDescription: string;
   /** Longer description used on the primary featured card. */
   description: string;
-  /**
-   * Path under `public/`, e.g. `/projects/veris.svg`.
-   * Replace placeholder artwork with a real screenshot when you have one.
-   */
+  /** Problem statement shown in the Inspect panel. */
+  problem?: string;
+  /** Implementation notes shown in the Inspect panel. */
+  built?: string[];
+  /** Path under `public/`, e.g. `/projects/veris.png`. */
   image: string;
   imageAlt: string;
   technologies: string[];
   githubUrl?: string | null;
   liveUrl?: string | null;
-  /** ISO date (`YYYY-MM-DD`). Newer dates rank higher within featured / other. */
+  /** ISO date (`YYYY-MM-DD`). Tie-breaker after `rank`. */
   date: string;
-  /** `true` → Featured work. `false` → Other work. */
+  /** `true` → Active missions. `false` → Other work. */
   featured: boolean;
+  /**
+   * Visual order. Lower number = higher on the page.
+   * Featured rank 1 is the large primary mission.
+   */
+  rank: number;
   status?: ProjectStatus;
   category?: string;
 };
@@ -56,6 +63,8 @@ export type Project = {
     shortDescription: "One sentence for recruiters.",
     description:
       "Two or three sentences: what it is, who it is for, and what you built.",
+    problem: "The problem the product exists to solve.",
+    built: ["What you implemented"],
     image: "/projects/placeholder.svg",
     imageAlt: "Screenshot of Project name",
     technologies: ["Next.js", "TypeScript"],
@@ -63,6 +72,7 @@ export type Project = {
     liveUrl: "https://example.com",
     date: "2026-08-01",
     featured: true,
+    rank: 2,
     status: "shipped",
     category: "Product",
   },
@@ -73,9 +83,16 @@ export const projects: Project[] = [
     id: "veris",
     title: "Veris",
     shortDescription:
-      "GitHub-integrated pull request review and risk analysis for agent-written code.",
+      "Helps reviewers understand and risk-assess pull requests written by coding agents.",
     description:
-      "A developer platform that reviews pull requests, classifies risk, and produces structured merge recommendations with evidence. Built as a GitHub App with webhook ingestion, OAuth, and an analysis pipeline that traces why a decision was made.",
+      "Veris sits between autonomous coding agents and merge decisions. It inspects a pull request for scope, impact, and missing work, then produces an evidence-backed recommendation so reviewers know where to look first.",
+    problem:
+      "Coding agents can open pull requests faster than humans can re-read them. A change can pass tests and still edit files outside the task, touch auth or config, or skip coverage.",
+    built: [
+      "GitHub App with webhook ingestion, OAuth, and pull request sync",
+      "Analysis pipeline with structured validation (Zod) and decision tracing",
+      "Scope and consistency checks for risky changes, missing work, and review recommendations",
+    ],
     image: "/projects/veris.png",
     imageAlt:
       "Veris dashboard showing pull request risk analysis and a merge recommendation",
@@ -90,8 +107,9 @@ export const projects: Project[] = [
     ],
     githubUrl: "https://github.com/Fraol-D/Agent-PR-Firewall",
     liveUrl: "https://veris-roan.vercel.app/",
-    date: "2026-09-01",
+    date: "2026-07-01",
     featured: true,
+    rank: 1,
     status: "in-progress",
     category: "Developer tool",
   },
@@ -99,9 +117,16 @@ export const projects: Project[] = [
     id: "getdodos",
     title: "Getdodos",
     shortDescription:
-      "Two-sided tutoring marketplace with scheduling, roles, and Stripe payments.",
+      "Tutoring marketplace with scheduling, role-based access, and Stripe payments.",
     description:
-      "A full-stack marketplace connecting students and tutors. Includes scheduling, session management, role-based access, and Stripe payment processing on a production backend.",
+      "A two-sided product for students and tutors, with parent and tutor dashboards, session management, and payment processing on a production backend.",
+    problem:
+      "Matching, scheduling, and paying for tutoring has to live in one product — not a landing page plus a spreadsheet.",
+    built: [
+      "Parent and tutor dashboards with role-based access",
+      "Scheduling and session management",
+      "Stripe payment processing on a production backend",
+    ],
     image: "/projects/getdodos.png",
     imageAlt:
       "Getdodos tutoring marketplace with parent and tutor dashboard views",
@@ -115,8 +140,9 @@ export const projects: Project[] = [
     ],
     githubUrl: "https://github.com/Fraol-D/getdodos",
     liveUrl: "https://www.getdodos.com/",
-    date: "2026-08-15",
+    date: "2026-06-01",
     featured: true,
+    rank: 2,
     status: "in-progress",
     category: "Marketplace",
   },
@@ -124,9 +150,16 @@ export const projects: Project[] = [
     id: "briefr",
     title: "Briefr",
     shortDescription:
-      "AI research tool that turns a question into a structured, sourced brief.",
+      "Turns a research question into a structured, sourced brief.",
     description:
-      "A research console that searches the web in real time and returns a cited report with an executive summary, sections, and markdown export. Built for people who need a usable brief, not a chat transcript.",
+      "A research console that searches the web in real time and returns a cited report — executive summary, sections, and markdown export — for people who need a brief they can use, not a chat transcript.",
+    problem:
+      "Most AI answers arrive as chat. Research work needs a brief you can read, cite, and export.",
+    built: [
+      "Real-time web research into a structured report",
+      "Executive summary, sections, and source citations",
+      "Copy and markdown export",
+    ],
     image: "/projects/briefr.png",
     imageAlt:
       "Briefr research report with executive summary and download options",
@@ -135,6 +168,7 @@ export const projects: Project[] = [
     liveUrl: "https://briefr-ai.vercel.app/",
     date: "2026-08-01",
     featured: true,
+    rank: 3,
     status: "shipped",
     category: "Research",
   },
@@ -142,9 +176,16 @@ export const projects: Project[] = [
     id: "appealmd",
     title: "AppealMD",
     shortDescription:
-      "AI tool that classifies denied dental claims and drafts structured appeal letters.",
+      "Classifies denied dental claims and drafts structured appeal letters.",
     description:
-      "A privacy-first workflow for dental insurance appeals. The system classifies a denial, validates structured output with Pydantic, and generates a letter without storing patient documents.",
+      "A privacy-first workflow for dental insurance appeals. It classifies a denial, validates structured output with Pydantic, and generates a letter without storing patient documents.",
+    problem:
+      "A denied dental claim needs a structured appeal letter. The workflow has to produce something usable without retaining patient documents.",
+    built: [
+      "Denial classification and Pydantic-validated generation",
+      "Placeholder-based, privacy-first letter output",
+      "Downloadable appeal letter workflow",
+    ],
     image: "/projects/appealmd.png",
     imageAlt:
       "AppealMD interface for generating a dental insurance appeal letter",
@@ -159,6 +200,7 @@ export const projects: Project[] = [
     liveUrl: "https://getappealmd.vercel.app/",
     date: "2026-04-01",
     featured: false,
+    rank: 4,
     status: "shipped",
     category: "Healthcare",
   },

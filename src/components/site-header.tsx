@@ -21,6 +21,16 @@ const socials = [
   { label: "LinkedIn", href: site.socials.linkedin, icon: LinkedInIcon },
 ];
 
+function navLinkProps(href: string) {
+  const isHash = href.startsWith("#");
+  return {
+    href,
+    ...(isHash
+      ? {}
+      : { target: "_blank" as const, rel: "noopener noreferrer" }),
+  };
+}
+
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
@@ -41,13 +51,20 @@ export function SiteHeader() {
           {site.nav.map((item) => (
             <a
               key={item.href}
-              href={item.href}
+              {...navLinkProps(item.href)}
               className="rounded-md px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
             >
               {item.label}
+              {!item.href.startsWith("#") ? (
+                <span className="sr-only"> (opens in a new tab)</span>
+              ) : null}
             </a>
           ))}
           <span className="mx-2 h-4 w-px bg-border" aria-hidden="true" />
+          <span className="mr-1 hidden items-center gap-1.5 font-mono text-[10px] tracking-[0.14em] text-[var(--live)] uppercase lg:inline-flex">
+            <span className="size-1.5 rounded-full bg-[var(--live)] shadow-[0_0_8px_var(--live)]" />
+            Online
+          </span>
           {socials.map((item) => (
             <a
               key={item.href}
@@ -56,6 +73,7 @@ export function SiteHeader() {
               rel="noopener noreferrer"
               className={cn(
                 buttonVariants({ variant: "ghost", size: "icon-sm" }),
+                "min-h-9 min-w-9",
               )}
               aria-label={item.label}
             >
@@ -72,13 +90,14 @@ export function SiteHeader() {
               <Button
                 variant="ghost"
                 size="icon-sm"
+                className="min-h-10 min-w-10"
                 aria-label="Open navigation"
               />
             }
           >
             <Menu />
           </SheetTrigger>
-          <SheetContent side="right" className="w-72">
+          <SheetContent side="right" className="w-full max-w-xs sm:max-w-sm">
             <SheetHeader>
               <SheetTitle>{site.shortName}</SheetTitle>
             </SheetHeader>
@@ -88,16 +107,19 @@ export function SiteHeader() {
                   key={item.href}
                   render={
                     <a
-                      href={item.href}
-                      className="rounded-md px-2 py-2 text-base text-foreground focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
+                      {...navLinkProps(item.href)}
+                      className="rounded-md px-2 py-3 text-base text-foreground focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
                     />
                   }
                 >
                   {item.label}
+                  {!item.href.startsWith("#") ? (
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  ) : null}
                 </SheetClose>
               ))}
             </nav>
-            <div className="mt-6 flex gap-2 px-4">
+            <div className="mt-6 flex flex-wrap gap-2 px-4 pb-4">
               {socials.map((item) => (
                 <a
                   key={item.href}
@@ -106,7 +128,7 @@ export function SiteHeader() {
                   rel="noopener noreferrer"
                   className={cn(
                     buttonVariants({ variant: "outline", size: "sm" }),
-                    "h-8 px-3",
+                    "h-10 px-3",
                   )}
                 >
                   <item.icon data-icon="inline-start" />

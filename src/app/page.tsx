@@ -1,11 +1,15 @@
+import { Atmosphere } from "@/components/atmosphere";
+import { BootSequence } from "@/components/boot-sequence";
 import { About } from "@/components/sections/about";
 import { Contact } from "@/components/sections/contact";
 import { Experience } from "@/components/sections/experience";
 import { Hero } from "@/components/sections/hero";
 import { Skills } from "@/components/sections/skills";
 import { Work } from "@/components/sections/work";
+import { ScrollProgress } from "@/components/scroll-progress";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { SystemCursor } from "@/components/system-cursor";
 
 export default function Home() {
   return (
@@ -16,8 +20,12 @@ export default function Home() {
       >
         Skip to work
       </a>
+      <Atmosphere />
+      <ScrollProgress />
+      <SystemCursor />
+      <BootSequence />
       <SiteHeader />
-      <main>
+      <main className="relative">
         <Hero />
         <Work />
         <About />

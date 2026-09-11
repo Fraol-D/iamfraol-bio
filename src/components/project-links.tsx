@@ -30,7 +30,7 @@ export function ProjectLinks({
           href={project.liveUrl!}
           target="_blank"
           rel="noopener noreferrer"
-          className={cn(buttonVariants({ size: "sm" }), "h-8 px-3")}
+          className={cn(buttonVariants({ size: "sm" }), "h-9 min-h-9 px-3")}
         >
           Live demo
           <ArrowUpRight data-icon="inline-end" />
@@ -44,7 +44,7 @@ export function ProjectLinks({
           rel="noopener noreferrer"
           className={cn(
             buttonVariants({ variant: "outline", size: "sm" }),
-            "h-8 px-3",
+            "h-9 min-h-9 px-3",
           )}
         >
           <GitHubIcon data-icon="inline-start" className="size-4" />

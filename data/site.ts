@@ -10,14 +10,14 @@ export const site = {
   location: "Addis Ababa, Ethiopia",
   availability: "Open to software engineering roles — remote or on-site",
 
-  headline: "Software engineer building products end to end.",
+  headline: "Software engineer building full-stack products.",
   summary:
-    "I design and ship full-stack applications — developer tools, marketplaces, and AI-assisted workflows — with a bias toward clear interfaces and systems that hold up in use.",
+    "I design and ship the interface, the API, and the data model. Strongest recent work is Veris — a GitHub-native system that helps reviewers understand and risk-assess pull requests written by coding agents.",
 
   about: [
-    "I work across the stack: React and Next.js on the frontend, Node and FastAPI on the backend, and Postgres when the product needs a real data model. The through-line is product work — not isolated demos.",
-    "Recent projects include Veris (GitHub PR risk analysis), Getdodos (tutoring marketplace with payments), AppealMD (dental insurance appeal letters), and Briefr (sourced research briefs).",
-    "I am finishing a B.S. in Computer Science at Unity University and looking for software engineering roles where I can own features and keep shipping useful products.",
+    "I work end to end: React and Next.js on the frontend, Node and FastAPI on the backend, and Postgres when the product needs a real data model.",
+    "Veris is the strongest example: a GitHub App that analyzes agent-written pull requests for scope, impact, and missing work, then returns an evidence-backed merge recommendation. Getdodos, Briefr, and AppealMD were built the same way — complete products, not isolated demos.",
+    "I have a B.S. in Computer Science from Unity University and I am looking for software engineering roles where I can own features and keep shipping useful products.",
   ],
 
   email: "fraolashebir84@gmail.com",
@@ -42,21 +42,22 @@ export const site = {
   nav: [
     { label: "Work", href: "#work" },
     { label: "About", href: "#about" },
+    { label: "Resume", href: "/Fraol-Ashebir-Demisse-Resume.pdf" },
     { label: "Contact", href: "#contact" },
   ],
 
   seo: {
     title: "Fraol Ashebir Demisse — Software Engineer",
     description:
-      "Software engineer and product builder. Full-stack work across React, Next.js, Node.js, and AI-assisted tools. Selected projects: Veris, Getdodos, AppealMD, and Briefr.",
+      "Software engineer who builds full-stack products. Flagship project: Veris, a GitHub-native system for reviewing and risk-assessing agent-generated pull requests.",
     keywords: [
       "Fraol Ashebir Demisse",
       "software engineer",
       "full-stack developer",
+      "Veris",
       "Next.js",
       "React",
       "TypeScript",
-      "portfolio",
     ],
   },
 } as const;

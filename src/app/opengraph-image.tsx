@@ -16,27 +16,30 @@ export default function OpenGraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#eef2f6",
-          color: "#12161c",
+          background: "#07090c",
+          color: "#e7eef4",
           padding: "72px",
         }}
       >
         <div
           style={{
-            fontSize: 22,
+            display: "flex",
+            justifyContent: "space-between",
+            fontSize: 20,
             letterSpacing: "0.18em",
             textTransform: "uppercase",
-            color: "#5b6573",
+            color: "#3dd6f5",
           }}
         >
-          {site.role}
+          <span>System / Engineering</span>
+          <span>Online</span>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
-          <div style={{ fontSize: 64, lineHeight: 1.05 }}>{site.name}</div>
+          <div style={{ fontSize: 60, lineHeight: 1.05 }}>{site.name}</div>
           <div
             style={{
-              fontSize: 28,
-              color: "#5b6573",
+              fontSize: 26,
+              color: "#8b98a6",
               maxWidth: 860,
               lineHeight: 1.35,
             }}
@@ -44,7 +47,7 @@ export default function OpenGraphImage() {
             {site.headline}
           </div>
         </div>
-        <div style={{ fontSize: 22, color: "#6f6a62" }}>{site.url}</div>
+        <div style={{ fontSize: 20, color: "#8b98a6" }}>{site.url}</div>
       </div>
     ),
     size,

@@ -22,7 +22,7 @@ export const site = {
 
   email: "fraolashebir84@gmail.com",
   phone: "+251 974 07 97 48",
-  resumePath: "/Fraol-Ashebir-Demisse-Resume.pdf",
+  resumePath: "/Fraol-Resume-V18-Oct-2026.pdf",
   photo: {
     src: "/images/fraol.jpg",
     alt: "Portrait of Fraol Ashebir Demisse",
@@ -42,7 +42,7 @@ export const site = {
   nav: [
     { label: "Work", href: "#work" },
     { label: "About", href: "#about" },
-    { label: "Resume", href: "/Fraol-Ashebir-Demisse-Resume.pdf" },
+    { label: "Resume", href: "/Fraol-Resume-V18-Oct-2026.pdf" },
     { label: "Contact", href: "#contact" },
   ],
 
